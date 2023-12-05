@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SmokeCounter</string>
+    <string name="app_name_info">Smoking Counter</string>
+    <string name="version_info">Version 1.0</string>
+    <string name="piece_of_cigarette_has_been_smoked">" Adet Sigara İçilmiş"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="TRY">" TRY"</string>
+    <string name="today">Bugün</string>
+    <string name="total">Toplam</string>
+    <string name="today_s_total">Bugünün Toplamı</string>
+    <string name="total_is">X adet Sigara, toplam X.X maliyete sebep oldu.</string>
+    <string name="detailed_report">Detaylı Rapor</string>
+    <string name="detailed_report_loading">Detaylı rapor hazırlanıyor…</string>
+    <string name="add">Ekle</string>
+    <string name="remove">Çıkart</string>
+    <string name="there_is_no_cigarette_left_removable">Çıkarılabilecek ürün kalmadı</string>
+    <string name="lacked_from_life">"Ömrünüzden giden dakikalar: "</string>
+    <string name="illness">"Sigaranın sebep olduğu hastalıklar: "</string>
+    <string name="piece">" Adet sigara için "</string>
+    <string name="cost">" ödendi."</string>
+    <string name="previoues_cigarettes_that_smoked">"Şuana kadar içilen toplam sigara : "</string>
+    <string name="piece_of_smoked">" sigara içildi."</string>
+    <string name="minute">" Dakika"</string>
+    <string name="cigarette">Sigara</string>
+    <string name="for_those_cigarettes">"Bu sigaralar için toplamda "</string>
+    <string name="spend">" ödendi."</string>
+</resources>
