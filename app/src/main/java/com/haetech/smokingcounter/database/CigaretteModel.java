@@ -1,4 +1,4 @@
-package com.haetech.smokecounter.database;
+package com.haetech.smokingcounter.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

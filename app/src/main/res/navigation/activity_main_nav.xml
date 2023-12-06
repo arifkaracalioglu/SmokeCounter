@@ -5,14 +5,14 @@
     app:startDestination="@id/mainFragment">
 
     <fragment android:id="@+id/mainFragment"
-        android:name="com.haetech.smokecounter.fragments.MainFragment"
+        android:name="com.haetech.smokingcounter.fragments.MainFragment"
         android:label="main_fragment">
         <action android:id="@+id/mainToSettings"
             app:destination="@id/settingsFragment"/>
     </fragment>
 
     <fragment android:id="@+id/settingsFragment"
-        android:name="com.haetech.smokecounter.fragments.SettingsFragment"
+        android:name="com.haetech.smokingcounter.fragments.SettingsFragment"
         android:label="settings_fragment">
         <action android:id="@+id/mainToSettings" app:destination="@id/mainFragment"/>
     </fragment>

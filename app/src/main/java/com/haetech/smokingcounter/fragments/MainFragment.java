@@ -1,4 +1,4 @@
-package com.haetech.smokecounter.fragments;
+package com.haetech.smokingcounter.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,11 +16,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.haetech.smokecounter.R;
-import com.haetech.smokecounter.adapters.RecylcerViewAdapterCigarette;
-import com.haetech.smokecounter.database.CigaretteModel;
-import com.haetech.smokecounter.database.CigaretteModelDatabase;
-import com.haetech.smokecounter.databinding.FragmentMainBinding;
+import com.haetech.smokingcounter.R;
+import com.haetech.smokingcounter.adapters.RecylcerViewAdapterCigarette;
+import com.haetech.smokingcounter.database.CigaretteModel;
+import com.haetech.smokingcounter.database.CigaretteModelDatabase;
+import com.haetech.smokingcounter.databinding.FragmentMainBinding;
 
 import java.sql.Date;
 import java.text.DecimalFormat;

@@ -1,4 +1,4 @@
-package com.haetech.smokecounter;
+package com.haetech.smokingcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.haetech.smokecounter.database.CigaretteModel;
-import com.haetech.smokecounter.database.CigaretteModelDatabase;
-import com.haetech.smokecounter.databinding.ActivityEntryBinding;
-
-import java.util.List;
+import com.haetech.smokingcounter.database.CigaretteModelDatabase;
+import com.haetech.smokingcounter.databinding.ActivityEntryBinding;
 
 public class EntryActivity extends AppCompatActivity {
 

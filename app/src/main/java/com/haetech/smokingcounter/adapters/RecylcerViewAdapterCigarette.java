@@ -1,4 +1,4 @@
-package com.haetech.smokecounter.adapters;
+package com.haetech.smokingcounter.adapters;
 
 import android.app.Activity;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.haetech.smokecounter.R;
-import com.haetech.smokecounter.database.CigaretteModel;
+import com.haetech.smokingcounter.R;
+import com.haetech.smokingcounter.database.CigaretteModel;
 
 import java.util.ArrayList;
 

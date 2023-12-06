@@ -1,4 +1,4 @@
-package com.haetech.smokecounter.fragments;
+package com.haetech.smokingcounter.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.haetech.smokecounter.databinding.FragmentSettingsBinding;
+import com.haetech.smokingcounter.databinding.FragmentSettingsBinding;
 
 public class SettingsFragment extends Fragment {
 

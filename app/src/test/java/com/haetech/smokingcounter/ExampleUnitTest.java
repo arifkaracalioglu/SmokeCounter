@@ -1,4 +1,4 @@
-package com.haetech.smokecounter;
+package com.haetech.smokingcounter;
 
 import org.junit.Test;
 

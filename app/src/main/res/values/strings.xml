@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmokeCounter</string>
+    <string name="app_name">SmokingCounter</string>
     <string name="app_name_info">Smoking Counter</string>
     <string name="version_info">Version 1.0</string>
     <string name="piece_of_cigarette_has_been_smoked">" Adet Sigara İçilmiş"</string>

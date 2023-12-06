@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.haetech.smokecounter"
+    namespace = "com.haetech.smokingcounter"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.haetech.smokecounter"
+        applicationId = "com.haetech.smokingcounter"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

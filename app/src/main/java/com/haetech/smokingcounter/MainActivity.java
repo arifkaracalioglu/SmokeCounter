@@ -1,16 +1,10 @@
-package com.haetech.smokecounter;
+package com.haetech.smokingcounter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.haetech.smokecounter.database.CigaretteModel;
-import com.haetech.smokecounter.database.CigaretteModelDatabase;
-import com.haetech.smokecounter.databinding.ActivityMainBinding;
-
-import java.util.List;
+import com.haetech.smokingcounter.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
