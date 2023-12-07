@@ -19,7 +19,6 @@ public interface CigaretteModelDao {
     CigaretteModel getLastCigarette();
     @Query("SELECT * FROM CigaretteModel WHERE cigaretteModel.smoked_date > :date")
     List<CigaretteModel> getAllCigarettesByDate(Date date);
-
     @Insert
     void insertOneCigarette(CigaretteModel cigaretteModel);
     @Delete

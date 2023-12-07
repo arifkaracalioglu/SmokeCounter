@@ -1,13 +1,16 @@
 package com.haetech.smokingcounter.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.haetech.smokingcounter.R;
 import com.haetech.smokingcounter.adapters.RecylcerViewAdapterCigarette;
 import com.haetech.smokingcounter.database.CigaretteModel;
@@ -70,6 +74,7 @@ public class MainFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        checkPriceForPieceExists();
         setListeners();
         setCigarettesViewParams();
         setRecyclerView();
@@ -89,7 +94,9 @@ public class MainFragment extends Fragment {
         binding.mBtnAddOne.setOnClickListener(v -> addCigarette());
         binding.mBtnRemoveOne.setOnClickListener(v -> removeCigarette());
     }
+    private void navigateToSettings(){
 
+    }
     private void setVariables() {
         todayList = new ArrayList<>();
         calendar = Calendar.getInstance();
@@ -186,4 +193,29 @@ public class MainFragment extends Fragment {
         binding.mTextViewDetailedReport.setText(stringBuilder.toString());
     }
 
+    private void checkPriceForPieceExists(){
+        if (!sharedPreferences.contains("price")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            final View view = getLayoutInflater().inflate(R.layout.alert_dialog_put_price, binding.getRoot(), false);
+            EditText editText = view.findViewById(R.id.mEditTextAlertDialogPrice);
+            builder.setTitle(getString(R.string.price))
+                    .setMessage(getString(R.string.put_price_message))
+                    .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+                        setDefaultPriceFirstTime(editText.getText().toString());
+                        dialog.dismiss();
+                    })
+                    .setCancelable(false);
+        }
+    }
+
+    private void setDefaultPriceFirstTime(String priceStr){
+        double price = Double.parseDouble(priceStr);
+        editor.putString("price", Double.toString(price));
+        if (editor.commit()){
+            Snackbar.make(binding.getRoot(), getString(R.string.new_price_committed), 1000).show();
+            priceForPiece = price;
+        }else{
+            Snackbar.make(binding.getRoot(), getString(R.string.new_price_cannot_committed), 1000).show();
+        }
+    }
 }

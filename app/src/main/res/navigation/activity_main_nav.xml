@@ -14,6 +14,6 @@
     <fragment android:id="@+id/settingsFragment"
         android:name="com.haetech.smokingcounter.fragments.SettingsFragment"
         android:label="settings_fragment">
-        <action android:id="@+id/mainToSettings" app:destination="@id/mainFragment"/>
+        <action android:id="@+id/settingsToMain" app:destination="@id/mainFragment"/>
     </fragment>
 </navigation>

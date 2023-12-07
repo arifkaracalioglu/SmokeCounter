@@ -25,4 +25,14 @@
     <string name="cigarette">Sigara</string>
     <string name="for_those_cigarettes">"Bu sigaralar için toplamda "</string>
     <string name="spend">" ödendi."</string>
+    <string name="change_for_piece">1 Adet için bedeli değiştirin</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="price">Fiyat</string>
+    <string name="confirm">Onayla</string>
+    <string name="clear_all_datas">Tüm verileri temizle</string>
+    <string name="new_price_committed">Yeni fiyat kaydedildi</string>
+    <string name="new_price_cannot_committed">Yeni fiyat kaydedilemedi !</string>
+    <string name="put_price_message">Lütfen 1 adet sigara için fiyatı giriniz</string>
+    <string name="please_put_price">Fiyat giriniz</string>
+    <string name="all_datas_clear_now">Tüm veriler silindi</string>
 </resources>
