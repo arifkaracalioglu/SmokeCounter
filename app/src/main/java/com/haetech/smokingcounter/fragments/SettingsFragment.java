@@ -61,6 +61,7 @@ public class SettingsFragment extends Fragment {
         if (editor != null) {
             editor.putString("price", Double.toString(price));
             editor.commit();
+            binding.mEditTextPrice.setText("");
             Snackbar.make(binding.getRoot(), getString(R.string.new_price_committed), 1000).show();
         } else {
             Snackbar.make(binding.getRoot(), getString(R.string.new_price_cannot_committed), 1000).show();

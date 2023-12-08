@@ -3,7 +3,6 @@ package com.haetech.smokingcounter.fragments;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -85,18 +83,13 @@ public class MainFragment extends Fragment {
         sharedPreferences = requireActivity().getSharedPreferences("day", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         priceForPiece = Double.parseDouble(sharedPreferences.getString("price", "1.0"));
-
-        editor.putString("price", "2.85");
-        editor.commit();
     }
 
     private void setListeners() {
         binding.mBtnAddOne.setOnClickListener(v -> addCigarette());
         binding.mBtnRemoveOne.setOnClickListener(v -> removeCigarette());
     }
-    private void navigateToSettings(){
 
-    }
     private void setVariables() {
         todayList = new ArrayList<>();
         calendar = Calendar.getInstance();
@@ -132,9 +125,8 @@ public class MainFragment extends Fragment {
     }
 
     private void setCigarettesViewParams() {
-        int allCigaretteSize = db.cigaretteModelDao().getAllCigarettes().size();
-        setTotalText(todayList.size());
-        setDetailedReport(allCigaretteSize);
+        setTotalText(todayList);
+        setDetailedReport(db.cigaretteModelDao().getAllCigarettes());
         Log.e("Today's Size: ", todayList.size() + " piece");
     }
 
@@ -168,33 +160,47 @@ public class MainFragment extends Fragment {
         if (cigarette != null) {
             db.cigaretteModelDao().delete(cigarette);
             if (todayList.size() >= 1) {
-                todayList.remove(todayList.size() -1);
+                todayList.remove(todayList.size() - 1);
             } else {
                 list.remove(cigarette);
             }
             setCigarettesViewParams();
             notifyRecyclerViewAdapter();
         } else {
-            Toast.makeText(requireActivity(), getString(R.string.there_is_no_cigarette_left_removable), Toast.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(), getString(R.string.there_is_no_cigarette_left_removable), 1000).show();
         }
     }
 
-    private void setTotalText(int size) {
-        String valueOfTotalPrice = size + getString(R.string.piece) + new DecimalFormat("##.##").format((size * priceForPiece)) + getString(R.string.TRY) + getString(R.string.cost);
+    private void setTotalText(List<CigaretteModel> todayCigarettes) {
+        String valueOfTotalPrice;
+        if (todayCigarettes.size() != 0){
+            valueOfTotalPrice = todayCigarettes.size() + getString(R.string.piece) + new DecimalFormat("##.##").format(calculatePriceForCigarettes(todayCigarettes)) + getString(R.string.TRY) + getString(R.string.cost);
+        }else{
+            valueOfTotalPrice = todayCigarettes.size() + getString(R.string.piece) + "0.0" + getString(R.string.TRY) + getString(R.string.cost);
+        }
         binding.mTextViewTotal.setText(valueOfTotalPrice);
     }
 
-    private void setDetailedReport(int size) {
+    private void setDetailedReport(List<CigaretteModel> allCigarettes) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getString(R.string.previoues_cigarettes_that_smoked) + size + getString(R.string.piece_of_smoked) + "\n");
-        stringBuilder.append(getString(R.string.for_those_cigarettes) + (size * priceForPiece) + getString(R.string.TRY) + getString(R.string.spend) + "\n\n");
-        stringBuilder.append(getString(R.string.lacked_from_life) + (size * 12) + getString(R.string.minute) + "\n\n");
-        stringBuilder.append(getString(R.string.illness) + "\n" + "Ağız, gırtlak ve akciğer kanseri." + "\n" + "KOAH" + "\n" + "Stres");
+        stringBuilder.append(getString(R.string.previoues_cigarettes_that_smoked) + allCigarettes.size() + getString(R.string.piece_of_smoked) + "\n");
+        Log.e("double", String.valueOf(calculatePriceForCigarettes(allCigarettes)));
+        stringBuilder.append(getString(R.string.for_those_cigarettes) + new DecimalFormat("##.##").format(calculatePriceForCigarettes(allCigarettes)) + getString(R.string.TRY) + getString(R.string.spend) + "\n\n");
+        stringBuilder.append(getString(R.string.lacked_from_life) + (allCigarettes.size() * 12) + getString(R.string.minute) + "\n\n");
+        stringBuilder.append(getString(R.string.illness) + "\n" + "Ağız, gırtlak ve akciğer kanseri." + "\n" + "KOAH");
         binding.mTextViewDetailedReport.setText(stringBuilder.toString());
     }
 
-    private void checkPriceForPieceExists(){
-        if (!sharedPreferences.contains("price")){
+    private double calculatePriceForCigarettes(List<CigaretteModel> cigaretteModels) {
+        double totalPrice = 0;
+        for (CigaretteModel cigaretteModel : cigaretteModels) {
+            totalPrice += cigaretteModel.getPrice();
+        }
+        return totalPrice;
+    }
+
+    private void checkPriceForPieceExists() {
+        if (!sharedPreferences.contains("price")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             final View view = getLayoutInflater().inflate(R.layout.alert_dialog_put_price, binding.getRoot(), false);
             EditText editText = view.findViewById(R.id.mEditTextAlertDialogPrice);
@@ -208,13 +214,13 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void setDefaultPriceFirstTime(String priceStr){
+    private void setDefaultPriceFirstTime(String priceStr) {
         double price = Double.parseDouble(priceStr);
         editor.putString("price", Double.toString(price));
-        if (editor.commit()){
+        if (editor.commit()) {
             Snackbar.make(binding.getRoot(), getString(R.string.new_price_committed), 1000).show();
             priceForPiece = price;
-        }else{
+        } else {
             Snackbar.make(binding.getRoot(), getString(R.string.new_price_cannot_committed), 1000).show();
         }
     }
